@@ -28,7 +28,7 @@ def get_gemini_response(user_question: str, style: str) -> str:
         raise HTTPException(status_code=500, detail="La API Key de Gemini no está configurada.")
 
     client = genai.Client(api_key=api_key)
-    model = "gemini-2.5-flash"
+    model = "Gemini2.0Flash-Lite"
 
     system_prompt = (
         "Eres un asistente legal virtual experto en leyes mexicanas. "
