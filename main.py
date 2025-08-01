@@ -1,8 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import os
-from google import genai
-from google.genai import types
+import google.generativeai as genai
+from google.generativeai import types
+
 from typing import Optional
 from dotenv import load_dotenv
 import logging
