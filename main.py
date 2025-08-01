@@ -3,10 +3,10 @@ from pydantic import BaseModel
 import os
 import google.generativeai as genai
 from google.generativeai import types
-
 from typing import Optional
 from dotenv import load_dotenv
 import logging
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -15,6 +15,14 @@ app = FastAPI(
     title="API de Asistente Legal Virtual",
     description="API que conecta tu abogado virtual con el modelo Gemini para consultas legales en México.",
     version="1.1.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Puedes poner la URL de tu frontend en vez de "*"
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 class LegalQuestion(BaseModel):
@@ -28,7 +36,7 @@ def get_gemini_response(user_question: str, style: str) -> str:
         raise HTTPException(status_code=500, detail="La API Key de Gemini no está configurada.")
 
     client = genai.Client(api_key=api_key)
-    model = "Gemini2.0Flash-Lite"
+    model = "gemini-2.5-flash"
 
     system_prompt = (
         "Eres un asistente legal virtual experto en leyes mexicanas. "
