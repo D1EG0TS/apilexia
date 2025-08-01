@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+# VSCode
+.vscode/
+
+# Otros
+*.log
+*.sqlite3
+*.db
+.DS_Store
+.idea/
